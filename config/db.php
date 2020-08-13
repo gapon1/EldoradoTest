@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=eldorado',
+    'dsn' => 'mysql:host=localhost;dbname=eldorado_db',
     'username' => 'root',
-    'password' => 'test02156',
+    'password' => '',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
