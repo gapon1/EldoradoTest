@@ -20,7 +20,14 @@ $config = [
             ]
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\MemCache',
+            'servers' => [
+                [
+                    'host' => 'localhost',
+                    'port' => 80,
+                    'weight' => 100,
+                ],
+            ],
         ],
         'user' => [
             'identityClass' => 'app\models\User',
