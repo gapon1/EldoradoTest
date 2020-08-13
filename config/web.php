@@ -19,16 +19,7 @@ $config = [
                 'application/json' => \yii\web\JsonParser::class
             ]
         ],
-        'cache' => [
-            'class' => 'yii\caching\MemCache',
-            'servers' => [
-                [
-                    'host' => 'localhost',
-                    'port' => 80,
-                    'weight' => 100,
-                ],
-            ],
-        ],
+
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
