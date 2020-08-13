@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use yii\behaviors\TimestampBehavior;
+use yii\filters\RateLimitInterface;
 
 /**
  * This is the model class for table "{{%song}}".
@@ -13,7 +13,7 @@ use yii\behaviors\TimestampBehavior;
  * @property int|null $duration
  * @property int|null $created_at
  */
-class Song extends \yii\db\ActiveRecord
+class Song extends \yii\db\ActiveRecord implements RateLimitInterface
 {
     /**
      * {@inheritdoc}
@@ -23,12 +23,6 @@ class Song extends \yii\db\ActiveRecord
         return '{{%song}}';
     }
 
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::class,
-        ];
-    }
 
     /**
      * {@inheritdoc}
@@ -52,5 +46,19 @@ class Song extends \yii\db\ActiveRecord
             'duration' => 'Duration',
             'created_at' => 'Created At',
         ];
+    }
+
+    public function getRateLimit($request, $action)
+    {
+        return [100, 60]; //не более 100 запросов в течении 60 секунд
+    }
+    public function loadAllowance($request, $action)
+    {
+        //$count - считаем сколько уже запросов совершил юзер, например по записям в некой таблице логов
+        return [100-1, time()];
+    }
+    public function saveAllowance($request, $action, $allowance, $timestamp)
+    {
+        //записываем результат запроса, например в некоторую таблицу логов
     }
 }

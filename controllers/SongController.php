@@ -26,6 +26,7 @@ class SongController extends ActiveController
             // Use class
             'class' => RateLimiter::class,
         ];
+
         return $behaviors;
     }
 }
