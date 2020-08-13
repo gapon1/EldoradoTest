@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%song}}".
@@ -20,6 +21,13 @@ class Song extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return '{{%song}}';
+    }
+
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::class,
+        ];
     }
 
     /**

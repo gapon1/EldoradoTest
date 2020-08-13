@@ -127,6 +127,13 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
+    /**
+     * Generates access_token
+     */
+    public function generateAccessToken()
+    {
+        $this->access_token = 'admin';
+    }
 
     /**
      * Generates "remember me" authentication key
